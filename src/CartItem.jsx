@@ -60,12 +60,12 @@ export default function CartItem({ onContinueShopping }) {
             <h2>Order summary</h2>
             <div><span>Plants ({totalQuantity})</span><span>${calculateTotalAmount().toFixed(2)}</span></div>
             <div className="total"><strong>Total cart amount</strong><strong data-testid="cart-total">${calculateTotalAmount().toFixed(2)}</strong></div>
-            <button className="get-started-button checkout-button primary" onClick={handleCheckout}>Checkout</button>
+            <button className="get-started-button1 checkout-button primary" onClick={handleCheckout}>Checkout</button>
             {checkoutMessage && <p role="status" className="checkout-message">{checkoutMessage}</p>}
           </aside>
         </div>
       ) : <div className="empty-cart"><h2>Your cart is empty.</h2><p>Find a plant you will love.</p><p>Total cart amount: $0.00</p></div>}
-      <button className="continue-shopping-button continue_shopping_btn continue" onClick={handleContinueShopping}>
+      <button className="get-started-button continue-shopping-button continue_shopping_btn continue" onClick={handleContinueShopping}>
         Continue Shopping
       </button>
     </main>

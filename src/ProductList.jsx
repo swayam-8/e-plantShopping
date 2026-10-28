@@ -52,6 +52,7 @@ export default function ProductList({ onHomeClick }) {
   const [showCart, setShowCart] = useState(false);
   const [addedToCart, setAddedToCart] = useState({});
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const cart_quantity_count = totalQuantity;
 
   useEffect(() => {
     setAddedToCart(Object.fromEntries(cartItems.map(item => [item.name, true])));
@@ -61,16 +62,17 @@ export default function ProductList({ onHomeClick }) {
     dispatch(addItem(plant));
     setAddedToCart(previous => ({ ...previous, [plant.name]: true }));
   };
-  const handleHomeClick = event => { event.preventDefault(); onHomeClick(); };
+  const handleParadiseNurseyClick = event => { event.preventDefault(); onHomeClick(); };
+  const handleHomeClick = event => handleParadiseNurseyClick(event);
   const handlePlantsClick = event => { event.preventDefault(); setShowCart(false); };
   const handleCartClick = event => { event.preventDefault(); setShowCart(true); };
   const handleContinueShopping = () => setShowCart(false);
 
   const Navbar = () => (
     <header className="navbar">
-      <div className="brand"><span className="brand-icon">❧</span>
+      <a href="#home" className="brand" onClick={handleParadiseNurseyClick}><span className="brand-icon">❧</span>
         <span>Paradise Nursery<small>BRING LIFE HOME</small></span>
-      </div>
+      </a>
       <nav aria-label="Main navigation">
         <a href="#home" onClick={handleHomeClick}>Home</a>
         <a href="#plants" onClick={handlePlantsClick} aria-current={!showCart ? 'page' : undefined}>Plants</a>
@@ -79,7 +81,7 @@ export default function ProductList({ onHomeClick }) {
           <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
             <path d="M3 3h2l3 12h11l2-8H6M9 20h.01M18 20h.01" />
           </svg>
-          Cart <span className="cart-quantity" data-testid="cart-count">{totalQuantity}</span>
+          Cart <span id="cart_quantity_count" className="cart_quantity_count cart-quantity" data-testid="cart-count">{cart_quantity_count}</span>
         </a>
       </nav>
     </header>
